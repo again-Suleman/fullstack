@@ -10,6 +10,7 @@ const AppMessages = {
     UNAUTHORIZED: "UnAuthorized user",
     AUTHENTICATION_ERROR: "Authentication Error",
 
+    DUPLICATE_ERROR: "ER_DUP_ENTRY",
 
     APP_SUCCESS_CODE: "1",
     OK: "OK",
@@ -24,6 +25,14 @@ const AppMessages = {
     DELETED: "Deleted Successfully",
     DUPLICATE: "Email Already Exist..",
     UPDATED_PASSWORD: "Password success updated!",
+    
+    // Store
+    STORE_CREATED: "Store Successfully created",
+    STORE_DELETED: "Store deleted successfully",
+    STORE_UPDATED: "Store successfully updated",
+    DUPLICATE_STORE: "Store with the same name already exists",
+    STORE_NOT_FOUND: "Store Not Found!",
+    
 
 }
 

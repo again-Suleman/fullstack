@@ -11,5 +11,6 @@ router.get('/register', supplierController.registerSupplier);
 router.post('/login',supplierController.loginSupplier);
 router.put('/update', [verifyToken], supplierController.updateSupplier);
 router.delete('/delete/:id', [verifyToken], supplierController.deleteSupplier);
+router.delete('/update-password', [verifyToken], supplierController.updateSupplierPassword)
 
 module.exports = router;

@@ -9,10 +9,6 @@ const AppMessages = require("../constants/appMessages")
 const ErrorMessage = require("../composer/error-response")
 const SuccessResponse = require("../composer/success-response")
 
-const notFound = (req)=>{
-    return res.status(HttpCode.NOT_FOUND).send(new ErrorMessage(AppMessages.RESOURCE_NOT_FOUND));
-}
-
 
 
 const getSuppliersController = async (req, res) => {
@@ -47,10 +43,7 @@ const registerSupplier = async (req, res) => {
         const supplierId = await supplierService.addSupplier(firstName, lastName, email, hashedPassword);
 
         if (!supplierId) {
-
-            return notFound(req);  
-
-            //return res.status(HttpCode.NOT_FOUND).send(new ErrorMessage(AppMessages.RESOURCE_NOT_FOUND));
+            return res.status(HttpCode.NOT_FOUND).send(new ErrorMessage(AppMessages.RESOURCE_NOT_FOUND));
         }
 
         return res.status(HttpCode.CREATED).send(new SuccessResponse(AppMessages.USER_SUCCESSFULY_REGISTERED));
@@ -86,6 +79,7 @@ const loginSupplier = async (req, res) => {
         return res.status(HttpCode.INTERNAL_SERVER_ERROR).send(new ErrorMessage(AppMessages.INTERNAL_SERVER_ERROR))
     }
 }
+
 
 // UPDATE SUPPLIER
 const updateSupplier = async (req, res) => {
@@ -142,6 +136,7 @@ const deleteSupplier = async (req, res) => {
 };
 
 
+// Update Pasword
 const updateSupplierPassword = async (req, res) =>{
     try{
         const supplierId = req.userId;
@@ -174,7 +169,6 @@ const updateSupplierPassword = async (req, res) =>{
         return res.status(HttpCode.INTERNAL_SERVER_ERROR).send(new ErrorMessage(AppMessages.INTERNAL_SERVER_ERROR));
     }
 }
-
 
 
 

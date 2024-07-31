@@ -7,7 +7,7 @@ const verifyToken = (req, res, next) => {
     const token = req.headers['authorization'];
 
     if (!token) {
-        return res.status(HttpCode.UNAUTHORIZED).send(new ErrorMessage(AppMessages.INVALID_TOKEN).getError());
+        return res.status(HttpCode.UNAUTHORIZED).send(new ErrorMessage(AppMessages.UNAUTHORIZED));
     }
 
     jwt.verify(token, 'secret:)', (err, decoded) => {
