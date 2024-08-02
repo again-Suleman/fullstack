@@ -30,18 +30,21 @@ const getSuppliersController = async (req, res) => {
 const registerSupplier = async (req, res) => {
     try {
         const { firstName, lastName, email, password } = req.body;
+        console.log('Registering supplier:', { firstName, lastName, email });
 
         // Checking if the user exists
         const exist = await supplierService.getUserByEmail(email);
         if (exist) {
-            return res.status(HttpCode.BAD_REQUEST).send(new ErrorMessage(AppMessages.DUPLICATE));
+            return res.status(HttpCode.DUPLICATE).send(new ErrorMessage(AppMessages.DUPLICATE));
         }
 
         // Encrypting password 
         const hashedPassword = await authHelper.hashPassword(password);
 
+
         const supplierId = await supplierService.addSupplier(firstName, lastName, email, hashedPassword);
 
+        console.log('New supplier ID:', supplierId);
         if (!supplierId) {
             return res.status(HttpCode.NOT_FOUND).send(new ErrorMessage(AppMessages.RESOURCE_NOT_FOUND));
         }
