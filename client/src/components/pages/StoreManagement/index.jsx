@@ -1,13 +1,34 @@
-import React from 'react'
+import React, { useState} from 'react';
+import styles from './styles.module.scss';
 
-export default function index() {
+// Components
+import Header from './components/Header';
+import Dashboard from './components/Dashboard';
+import Products from './components/Products'
+import Stores from './components/Stores/index'
+
+const StoreManagement = () => {
+
+  const [selectedSection, setSelectedSection] = useState('Dashboard');
+
+  const handleNavClick = (section) => {
+    setSelectedSection(section);
+  };
+
   return (
     <>
-    <div>
-            <h1>Store Management</h1>
-            
+      <div className={styles.storeManagement}>
+        <Header onNavClick={handleNavClick} selectedNav={selectedSection} />
+        <div className={styles.container}>
+          {selectedSection === 'Dashboard' && <Dashboard />}
+          {selectedSection === 'Products' && <Products />}
+          {selectedSection === 'Stores' && <Stores />}
         </div>
-      
+
+
+      </div>
     </>
-  )
-}
+  );
+};
+
+export default StoreManagement;

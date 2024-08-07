@@ -46,7 +46,7 @@ const registerSupplier = async (req, res) => {
 
         console.log('New supplier ID:', supplierId);
         if (!supplierId) {
-            return res.status(HttpCode.NOT_FOUND).send(new ErrorMessage(AppMessages.RESOURCE_NOT_FOUND));
+            return res.status(HttpCode.NOT_FOUND).send(new ErrorMessage(AppMessages.USER_RESOURCE_NOT_FOUND));
         }
 
         return res.status(HttpCode.CREATED).send(new SuccessResponse(AppMessages.USER_SUCCESSFULY_REGISTERED));
@@ -65,13 +65,13 @@ const loginSupplier = async (req, res) => {
         const supplier = await supplierService.getUserByEmail(email);
 
         if (!supplier) {
-            return res.status(HttpCode.BAD_REQUEST).send(new ErrorMessage(AppMessages.RESOURCE_NOT_FOUND));
+            return res.status(HttpCode.NOT_FOUND).send(new ErrorMessage(AppMessages.USER_RESOURCE_NOT_FOUND));
         }
 
         const isPasswordValid = await authHelper.comparePassword(password, supplier.password)
 
         if (!isPasswordValid) {
-            return res.status(HttpCode.UNAUTHORIZED).send(new ErrorMessage(AppMessages.INVALID_CREDENTIALS));
+            return res.status(HttpCode.BAD_REQUEST).send(new ErrorMessage(AppMessages.INVALID_CREDENTIALS));
         }
 
         const token = authHelper.generateToken(supplier);

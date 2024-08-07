@@ -1,0 +1,19 @@
+$background: #F2F4F7;
+
+
+.storeManagement {
+    display: flex;
+    height: 100vh;
+    flex-direction: column;
+    background-color: $background;
+
+    
+}
+
+.container {
+    flex: 1;
+    width: 100%;
+    background-color: #f4f4f4;
+    overflow-y: auto;
+    
+  }

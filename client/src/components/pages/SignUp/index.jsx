@@ -12,17 +12,22 @@ const SignUp = () => {
 
   const navigate = useNavigate();
 
+  // Removing the credentials
+  useEffect(() => {
+    localStorage.removeItem('token')
+}, [])
+
   const handleSignUp = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.post(
-        'http://localhost:3001/api/supplier/register',
+      const response = await axios.post('http://localhost:3001/api/supplier/register',
         {
           firstName,
           lastName,
           email,
           password,
         },
+        
         {
           headers: {
             'Content-Type': 'application/json',
@@ -36,23 +41,20 @@ const SignUp = () => {
           navigate('/login');
         }, 3000);
       }
+
     } catch (error) {
-      if (error.response.status === 409) {
-        setMessage(error.response.data.errMsg);
-      } else {
-        setMessage('Error registering supplier.');
-      }
-      console.error('Error:', error);
+      if (error.response.status)
+        setMessage(error.response.data.errMsg)
     }
   };
 
   return (
     <div className={styles.container}>
 
-       {/* For Style */}
+      {/* For Style */}
       <div className={styles.box}></div>
       <div className={styles.circle}></div>
-      
+
       <div className={styles.child}>
         <h2 className={styles.heading}>Sign Up</h2>
         <form className={styles.form} onSubmit={handleSignUp}>

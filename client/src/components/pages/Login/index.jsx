@@ -1,13 +1,23 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import styles from './style.module.scss';
+import { useDispatch } from 'react-redux';
+import { setToken } from '../../store/slices/authSlice';
 
 export default function Index() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [message, setMessage] = useState('');
+    const [processing, setProcessing] = useState(false)
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+
+    // Removing the credentials
+    useEffect(() => {
+        localStorage.removeItem('token')
+    }, [])
+
 
     const handleLogin = async (event) => {
         event.preventDefault();
@@ -16,17 +26,26 @@ export default function Index() {
                 email,
                 password,
             });
-            console.log(response.data);
-            localStorage.setItem('token', response.data.result.token);
-            
-            setTimeout(() => {
-                navigate('/store-management');
-            }, 3000);
+
+            if (response.status === 200) {
+                setTimeout(() => {
+                    navigate('/store-management');
+                }, 3000);
+                setProcessing(true)
+                console.log(response.data);
+                dispatch(setToken(response.data.result.token))
+                // localStorage.setItem('token', response.data.result.token);
+                setMessage(response.data.message)
+            }
         } catch (error) {
-            setMessage('Error logging in.');
-            console.error('Error:', error);
+            if (error.response.status) {
+                setMessage(error.response.data.errMsg)
+            } else{
+                setMessage("An Error Occur, please try again")
+            }
         }
     };
+    
 
     return (
         <div className={styles.container}>
@@ -51,7 +70,11 @@ export default function Index() {
                             className={styles.input}
                         />
                     </div>
-                    <button type="submit" className={styles.button}>Login</button>
+                    <button type="submit"
+                        disabled={processing}
+                        className={styles.button}
+                        style={{ pointerEvents: processing ? 'none' : 'auto' }}
+                    >Login</button>
                 </form>
                 {message && <p className={styles.message}>{message}</p>}
             </div>

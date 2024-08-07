@@ -7,6 +7,22 @@ const ErrorMessage = require("../composer/error-response");
 const SuccessResponse = require("../composer/success-response");
 
 
+const getStores = async (req, res) => {
+    try {
+        const spId = req.userId;
+        const stores = await storeService.getStoresByOwner(spId);
+
+        if (!stores || stores.length === 0){
+            return res.status(HttpCode.NOT_FOUND).send(new ErrorMessage(AppMessages.STORE_NOT_FOUND))
+        }
+
+        return res.status(HttpCode.OK).send(new SuccessResponse(AppMessages.OK, stores))
+
+    } catch (error) {
+        return res.status(HttpCode.INTERNAL_SERVER_ERROR).send(new ErrorMessage(AppMessages.INTERNAL_SERVER_ERROR));
+    }
+}
+
 
 const addStore = async (req, res) => {
     try {
@@ -68,7 +84,7 @@ const updateStore = async (req, res) => {
             return res.status(HttpCode.NOT_FOUND).send(new ErrorMessage(AppMessages.RESOURCE_NOT_FOUND));
         }
 
-        const updatedStore = await storeService.getStoreByNameAndSupplier(spId, newStName);
+        await storeService.getStoreByNameAndSupplier(spId, newStName);
         return res.status(HttpCode.OK).send(new SuccessResponse(AppMessages.STORE_UPDATED));
 
     } catch (e) {
@@ -80,5 +96,6 @@ const updateStore = async (req, res) => {
 module.exports = {
     addStore,
     deleteStore,
-    updateStore
+    updateStore,
+    getStores
 };

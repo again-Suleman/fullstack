@@ -7,5 +7,6 @@ const router = express.Router();
 router.post('/add', [verifyToken], storeController.addStore);
 router.delete('/delete', [verifyToken], storeController.deleteStore);
 router.put('/update/:stName', [verifyToken], storeController.updateStore);
+router.get('/', [verifyToken], storeController.getStores)
 
 module.exports = router;
