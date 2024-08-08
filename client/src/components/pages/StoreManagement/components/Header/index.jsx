@@ -2,11 +2,16 @@ import React from 'react';
 import styles from './styles.module.scss';
 
 
-// Images
+// Componets
 import logo from '../../../../../assets/logo/white.png';
+
+
 import { useDispatch } from 'react-redux';
 import { clearToken } from '../../../../store/slices/authSlice';
 import { useNavigate } from 'react-router-dom';
+import AnimatedButton from '../../../../common/animatedButton';
+
+
 
 const Header = ({ onNavClick, selectedNav }) => {
     const dispatch = useDispatch();
@@ -49,7 +54,7 @@ const Header = ({ onNavClick, selectedNav }) => {
                 </a>
             </nav>
             <div className={styles.logout}>
-                <button onClick={handleLogout}><span>Logout</span></button>
+               <AnimatedButton onClick={handleLogout}>Logout</AnimatedButton>
             </div>
         </header>
     );

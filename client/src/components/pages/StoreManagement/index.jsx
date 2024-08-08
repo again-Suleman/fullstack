@@ -21,8 +21,8 @@ const StoreManagement = () => {
         <Header onNavClick={handleNavClick} selectedNav={selectedSection} />
         <div className={styles.container}>
           {selectedSection === 'Dashboard' && <Dashboard />}
-          {selectedSection === 'Products' && <Products />}
           {selectedSection === 'Stores' && <Stores />}
+          {selectedSection === 'Products' && <Products />}
         </div>
 
 

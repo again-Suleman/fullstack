@@ -1,3 +1,5 @@
+const fs = require('fs');
+const path = require('path');
 const storeService = require('../services/storeService');
 
 // Constants and Composers
@@ -12,7 +14,7 @@ const getStores = async (req, res) => {
         const spId = req.userId;
         const stores = await storeService.getStoresByOwner(spId);
 
-        if (!stores || stores.length === 0){
+        if (!stores || stores.length === 0) {
             return res.status(HttpCode.NOT_FOUND).send(new ErrorMessage(AppMessages.STORE_NOT_FOUND))
         }
 
@@ -26,15 +28,26 @@ const getStores = async (req, res) => {
 
 const addStore = async (req, res) => {
     try {
+        console.log("Request body:", req.body); // Log the request body
+        console.log("Uploaded file:", req.file); 
         const { stName, description } = req.body;
-        const spId = req.userId; // Getting the idddd
+        const spId = req.userId;
+        const file = req.file;
 
-        const storeId = await storeService.addStore(spId, stName, description);
+        if (!file) {
+            return res.status(400).send(new ErrorMessage('No file uploaded.'));
+        }
+
+        const logoPath = file.path; 
+
+        const storeId = await storeService.addStore(spId, stName, description, logoPath);
         return res.status(HttpCode.CREATED).send(new SuccessResponse(AppMessages.STORE_CREATED, { storeId }));
 
     } catch (error) {
-        if (error.code === AppMessages.DUPLICATE_ERROR)
+        console.error("Error in addStore:", error);
+        if (error.code === AppMessages.DUPLICATE_ERROR) {
             return res.status(HttpCode.BAD_REQUEST).send(new ErrorMessage(AppMessages.DUPLICATE_STORE));
+        }
         return res.status(HttpCode.INTERNAL_SERVER_ERROR).send(new ErrorMessage(AppMessages.INTERNAL_SERVER_ERROR));
     }
 };

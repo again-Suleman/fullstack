@@ -1,10 +1,10 @@
 const db = require('../config/db');
 
 const storeService = {
-    async addStore(spId, stName, description) {
-        const sql = `INSERT INTO stores (sp_id, st_name, description) VALUES (?, ?, ?)`;
-        const [result] = await db.query(sql, [spId, stName, description]);
-        console.log(result)
+    async addStore(spId, stName, description, logoPath) {
+        const sql = `INSERT INTO stores (sp_id, st_name, description, logo) VALUES (?, ?, ?, ?)`;
+        const [result] = await db.query(sql, [spId, stName, description, logoPath]);
+        console.log( result);
         return result[0] ? result[0] : null;
     },
 

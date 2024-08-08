@@ -61,8 +61,8 @@ const Dashboard = () => {
 
     return (
         <div className={styles.dashboard}>
-            <h1>Dashboard</h1>
-            <div className={styles.container}>
+            <h1>Hello beautiful person</h1>
+            <div className={styles.container}>  
                 <div className={styles.chartWrapper}>
                     <div className={styles.chartContainer}>
                         <Bar data={barData} options={options} />

@@ -1,26 +1,55 @@
+.layout {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
 .storeList {
-    padding: 2rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: #f4f4f9;
-  
-    h2 {
-      font-size: 2rem;
-      margin-bottom: 1.5rem;
-      color: #333;
-    }
-  
-    p {
-      font-size: 1.2rem;
-      color: #666;
-    }
-  
-    .storeCards {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 1rem;
-    }
+  display: flex;
+  flex: 2;
+  flex-direction: column;
+  align-items: start;
+  background-color: #fff;
+  padding: 2rem 3rem;
+  margin: 1rem 2rem;
+  border-radius: 1vw;
+
+  h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: #333;
   }
-  
+
+  p {
+    font-size: 1.2rem;
+    color: #666;
+  }
+
+  .upper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 2rem;
+  }
+
+  .storeCards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 3rem;
+  }
+}
+
+.addStore {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  background-color: #fff;
+  padding: 2rem 3rem;
+  margin: 1rem 2rem;
+  border-radius: 1vw;
+}
