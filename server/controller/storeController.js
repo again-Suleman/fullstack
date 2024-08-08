@@ -28,7 +28,7 @@ const getStores = async (req, res) => {
 
 const addStore = async (req, res) => {
     try {
-        console.log("Request body:", req.body); // Log the request body
+        console.log("Request body:", req.body); 
         console.log("Uploaded file:", req.file); 
         const { stName, description } = req.body;
         const spId = req.userId;

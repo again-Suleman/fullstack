@@ -7,7 +7,7 @@ import logo from '../../../../../assets/logo/white.png';
 
 
 import { useDispatch } from 'react-redux';
-import { clearToken } from '../../../../store/slices/authSlice';
+import { clearToken } from '../../../../store/slices/authSlice/authSlice';
 import { useNavigate } from 'react-router-dom';
 import AnimatedButton from '../../../../common/animatedButton';
 

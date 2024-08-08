@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import styles from './style.module.scss';
 import { useDispatch } from 'react-redux';
-import { setToken } from '../../store/slices/authSlice';
+import { setToken } from '../../store/slices/authSlice/authSlice';
 
 export default function Index() {
     const [email, setEmail] = useState('');

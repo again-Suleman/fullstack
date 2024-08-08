@@ -37,8 +37,8 @@
     content: "";
     position: absolute;
     z-index: -1;
-    top: -16px;
-    right: -16px;
+    top: -25px;
+    right: -25px;
     background: black;
     height: 32px;
     width: 32px;
@@ -68,8 +68,8 @@
     height: 80px;
     border-radius: 50%;
     overflow: hidden;
-    border: 5px solid #000000; /* Border for the avatar */
-    margin-bottom: 0; /* Remove any margin below the image */
+    border: 5px solid #000000; 
+    margin-bottom: 0;
   }
 
   .cardImage {
@@ -87,7 +87,7 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    margin: 10px; /* Remove any margin */
+    margin: 10px;
   }
 
   .cardDescription {
@@ -99,7 +99,7 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    margin: 0; /* Remove any margin */
+    margin: 0; 
     &::before {
       content: "";
       position: absolute;
@@ -132,4 +132,34 @@
   margin-right: -4px;
   color: white;
   font-family: courier, sans;
+}
+
+
+.deleteButton {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: red;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.confirmDelete {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 2rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 1vw;
+  text-align: center;
 }

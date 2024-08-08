@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { addStore } from '../../../../../../store/slices/storeSlice';
+import { addStore, fetchStores } from '../../../../../../store/slices/storeSlice/storeSlice';
 import styles from './styles.module.scss';
 import AnimatedButton from '../../../../../../common/animatedButton';
 
@@ -41,6 +41,9 @@ const AddStoreForm = () => {
         }
 
         dispatch(addStore(formData));
+        setTimeout(() => {
+            dispatch(fetchStores())
+        }, 1000);
     };
 
     return (
