@@ -1,18 +1,17 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styles from './styles.module.scss';
 import { useDispatch } from 'react-redux';
 import { deleteStore, fetchStores } from '../../../../../../store/slices/storeSlice/storeSlice';
 
-
 const StoreCard = ({ store, deleteMode }) => {
-    console.log(store);
     const dispatch = useDispatch();
 
     const handleDelete = () => {
         if (window.confirm("Are you sure you want to delete this store?")) {
             dispatch(deleteStore({ stName: store.st_name }));
             setTimeout(() => {
-                dispatch(fetchStores())
+                dispatch(fetchStores());
             }, 500);
         }
     };
@@ -33,13 +32,21 @@ const StoreCard = ({ store, deleteMode }) => {
                     <p>No image available</p>
                 )}
                 <div>
-
                     <h2 className={styles.cardTitle}>{store.st_name}</h2>
                     <p className={styles.cardDescription}>{store.description}</p>
                 </div>
             </div>
         </div>
     );
+};
+
+StoreCard.propTypes = {
+    store: PropTypes.shape({
+        st_name: PropTypes.string.isRequired,
+        logo: PropTypes.string.isRequired,
+        description: PropTypes.string,
+    }).isRequired,  
+    deleteMode: PropTypes.bool.isRequired,  
 };
 
 export default StoreCard;

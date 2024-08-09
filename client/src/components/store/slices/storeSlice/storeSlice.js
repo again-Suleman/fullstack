@@ -13,7 +13,11 @@ const storesSlice = createSlice({
     error: null,
   },
 
-  reducers: {},
+  reducers: {
+    getStore: (state)=>{
+      console.log(state.stores)
+    }
+  },
   extraReducers: (builder) => {
     builder
 

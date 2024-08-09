@@ -3,7 +3,7 @@
 import React from 'react';
 import './style.css';
 
-const Loader = ({ centered }) => {
+const Loader = () => {
   return (
     <div className={`spinner center`}>
       {[...Array(12)].map((_, index) => (

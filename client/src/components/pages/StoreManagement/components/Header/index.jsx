@@ -1,27 +1,23 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styles from './styles.module.scss';
 
-
-// Componets
+// Components
 import logo from '../../../../../assets/logo/white.png';
-
 
 import { useDispatch } from 'react-redux';
 import { clearToken } from '../../../../store/slices/authSlice/authSlice';
 import { useNavigate } from 'react-router-dom';
 import AnimatedButton from '../../../../common/animatedButton';
 
-
-
 const Header = ({ onNavClick, selectedNav }) => {
     const dispatch = useDispatch();
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
-    const handleLogout = ()=>{
-        dispatch(clearToken())
-        navigate('/')
-        
-    }
+    const handleLogout = () => {
+        dispatch(clearToken());
+        navigate('/');
+    };
 
     return (
         <header className={styles.header}>
@@ -58,6 +54,11 @@ const Header = ({ onNavClick, selectedNav }) => {
             </div>
         </header>
     );
+};
+
+Header.propTypes = {
+    onNavClick: PropTypes.func.isRequired,  
+    selectedNav: PropTypes.string.isRequired, 
 };
 
 export default Header;

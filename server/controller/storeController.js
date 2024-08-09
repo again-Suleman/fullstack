@@ -1,5 +1,3 @@
-const fs = require('fs');
-const path = require('path');
 const storeService = require('../services/storeService');
 
 // Constants and Composers

@@ -1,5 +1,7 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const dotenv = require('dotenv')
+dotenv.config()
 
 
 const hashPassword = async (password) => {
@@ -25,7 +27,8 @@ const comparePassword = async (password, hashedPassword) => {
 
 const generateToken = (user) => {
     console.log("The User:", user)
-    return jwt.sign({ id: user.id, email: user.email }, 'secret:)', { expiresIn: '1h' });
+    const secret = process.env.JWT_SECRET
+    return jwt.sign({ id: user.id, email: user.email }, secret, { expiresIn: '1h' });
 };
 
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styles from './styles.module.scss';
 
 const AnimatedButton = ({ onClick, children }) => {
@@ -7,6 +8,11 @@ const AnimatedButton = ({ onClick, children }) => {
             <span>{children}</span>
         </button>
     );
+};
+
+AnimatedButton.propTypes = {
+    onClick: PropTypes.func,            
+    children: PropTypes.node.isRequired, 
 };
 
 export default AnimatedButton;
