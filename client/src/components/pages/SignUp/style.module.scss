@@ -1,5 +1,5 @@
 $background: #fff;
-$primary: #ff5f1f;
+$primary: #000000;
 
 
 @mixin center {
@@ -10,12 +10,18 @@ $primary: #ff5f1f;
 
 .container {
   @include center();
-  background-color: wheat;
+  background-color: rgb(0, 0, 0);
   color: #000;
   height: 100vh;
   width: 100%;
   position: relative;
   overflow: hidden;
+
+  .logo {
+    object-fit: contain;
+    width: 150px;
+    height: auto;
+  }
 
   .child {
     @include center();
@@ -30,7 +36,7 @@ $primary: #ff5f1f;
 
   .box, .circle, .polygon {
     position: absolute;
-    background-color: $primary;
+    background-color: whitesmoke;
     opacity: 1;
   }
 
@@ -112,7 +118,7 @@ $primary: #ff5f1f;
   &:focus {
     border-color: $primary;
     outline: none;
-    box-shadow: 0 0 5px rgba(255, 95, 31, 0.5);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
   }
 }
 

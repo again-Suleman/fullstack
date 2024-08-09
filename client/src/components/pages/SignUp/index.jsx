@@ -1,7 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import styles from './style.module.scss';
+
+// Components
+import logo from '../../../assets/logo/white.png'
 
 const SignUp = () => {
   const [firstName, setFirstName] = useState('');
@@ -56,7 +59,7 @@ const SignUp = () => {
       <div className={styles.circle}></div>
 
       <div className={styles.child}>
-        <h2 className={styles.heading}>Sign Up</h2>
+      <img className={styles.logo} src={logo} alt="logo" />
         <form className={styles.form} onSubmit={handleSignUp}>
           <div className={styles.formGroup}>
             <label className={styles.label}>First Name:</label>

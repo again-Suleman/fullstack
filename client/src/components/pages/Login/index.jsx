@@ -2,8 +2,13 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import styles from './style.module.scss';
+
+// RTK
 import { useDispatch } from 'react-redux';
 import { setToken } from '../../store/slices/authSlice/authSlice';
+
+// Components
+import logo from '../../../assets/logo/white.png'
 
 export default function Index() {
     const [email, setEmail] = useState('');
@@ -34,7 +39,6 @@ export default function Index() {
                 setProcessing(true)
                 console.log(response.data);
                 dispatch(setToken(response.data.result.token))
-                // localStorage.setItem('token', response.data.result.token);
                 setMessage(response.data.message)
             }
         } catch (error) {
@@ -50,7 +54,8 @@ export default function Index() {
     return (
         <div className={styles.container}>
             <div className={styles.child}>
-                <h2 className={styles.heading}>Login</h2>
+            <img className={styles.logo} src={logo} alt="logo" />
+                {/* <h2 className={styles.heading}>Login</h2> */}
                 <form className={styles.form} onSubmit={handleLogin}>
                     <div className={styles.formGroup}>
                         <label className={styles.label}>Email:</label>
